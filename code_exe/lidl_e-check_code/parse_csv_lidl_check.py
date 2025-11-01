@@ -4,6 +4,8 @@ from googleapiclient.http import MediaIoBaseDownload
 import io, os, glob
 from pyspark.sql import SparkSession
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, DoubleType
+from pyspark.sql.functions import monotonically_increasing_id
+from category_identification import category_identification_func
 
 # Configuration
 SERVICE_ACCOUNT_FILE = glob.glob("/opt/spark/google_auth/e-checks-project*.json")[0]
@@ -62,6 +64,13 @@ else:
     ])
 
     df = spark.read.csv("/opt/spark/source_data/", header=True, schema=schema)
-    df.show()
+    df = df.withColumn("id", monotonically_increasing_id())
+    
+    # Creating data frame with category and type namings for mapping
+    df_json = spark.read.option("multiline", True).json("/opt/spark/code_exe/category_type.json")
+    
+    # Category and type mapping 
+    df_cat = category_identification_func(df, df_json)
+
 
     spark.stop()

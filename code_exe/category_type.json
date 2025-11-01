@@ -16,7 +16,7 @@
     {"category": "Vegetables", "type": "Spinach", "keywords": ["Szpina"]},
     {"category": "Bakery products", "type": "Breadcrumbs", "keywords": ["TartaPano"]},
     {"category": "Fruits", "type": "Orange", "keywords": ["Pomara"]},
-    {"category": "Dairy products", "type": "Butter", "keywords": ["Maslo"]},
+    {"category": "Dairy products", "type": "Butter", "keywords": ["Maslo", "Masło"]},
     {"category": "Vegetables", "type": "Ginger", "keywords": ["Imbir"]},
     {"category": "Spices", "type": "Cinnamon", "keywords": ["PrzypCyn"]},
     {"category": "Vegetables", "type": "Radish", "keywords": ["Rzodkiewka"]},
@@ -31,5 +31,7 @@
     {"category": "Dairy products", "type": "Cheese cabebert", "keywords": ["Ser Camembert"]},
     {"category": "Liquids", "type": "Sunflower oil", "keywords": ["OlejS"]},
     {"category": "Dairy products", "type": "Chocolate shake", "keywords": ["MullMilch"]},
-    {"category": "Vegetables", "type": "Salat", "keywords": ["Sur"]}
+    {"category": "Vegetables", "type": "Salat", "keywords": ["Sur"]},
+    {"category": "Bakery products", "type": "Cookie", "keywords": ["Mieszanka pierników"]},
+    {"category": "Liquids", "type": "Tea", "keywords": ["Zioła liściaste herb"]}
 ]

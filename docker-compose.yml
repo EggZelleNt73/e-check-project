@@ -17,7 +17,6 @@ services:
     volumes:
       - /home/arthur_admin/e-check-project/source_data:/opt/spark/source_data
       - /home/arthur_admin/e-check-project/code_exe:/opt/spark/code_exe
-      - /home/arthur_admin/e-check-project/code_exe/lidl_e-check_code:/opt/spark/code_exe
       - /home/arthur_admin/e-check-project/sink_data:/opt/spark/sink_data
       - /home/arthur_admin/e-check-project/google_auth:/opt/spark/google_auth
       - /home/arthur_admin/e-check-project/spark-conf/spark-defaults.conf:/opt/spark/conf/spark-defaults.conf
