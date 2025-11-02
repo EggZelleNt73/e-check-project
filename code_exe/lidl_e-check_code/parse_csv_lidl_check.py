@@ -6,6 +6,7 @@ from pyspark.sql import SparkSession
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, DoubleType
 from pyspark.sql.functions import monotonically_increasing_id
 from category_identification import category_identification_func
+from date_transformation import date_transformation_func
 
 # Configuration
 SERVICE_ACCOUNT_FILE = glob.glob("/opt/spark/google_auth/e-checks-project*.json")[0]
@@ -71,6 +72,10 @@ else:
     
     # Category and type mapping 
     df_cat = category_identification_func(df, df_json)
+    
+    # Date transformation
+    df_date = date_transformation_func(df)
 
+    
 
     spark.stop()
