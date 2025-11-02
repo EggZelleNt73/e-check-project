@@ -60,8 +60,8 @@ else:
         StructField("price", DoubleType(), True),
         StructField("discount_value", DoubleType(), True),
         StructField("discount", StringType(), True),
-        StructField("date", StringType(), True),
-        StructField("time", StringType(), True)
+        StructField("time", StringType(), True),
+        StructField("date", StringType(), True)
     ])
 
     df = spark.read.csv("/opt/spark/source_data/", header=True, schema=schema)
@@ -102,5 +102,6 @@ else:
     df = df.orderBy(col("date").asc())
     df = df.fillna(0)
 
-   
+    df.coalesce(1).write.mode("overwrite").option("header", True).csv("/opt/spark/sink_data/csv_file")
+
     spark.stop()
