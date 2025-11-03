@@ -1,33 +1,15 @@
-from pyspark.sql.functions import *
+from pyspark.sql.functions import col, lit, when, explode
 import json
 
-def category_id_func(df_sell):
-    #reading json file with types and categories
-    product_map = []
+def category_identification_func(df, df_json):
 
-    with open("/opt/bitnami/spark/code_exe/category_type.json", "r") as f:
-        product_map = json.load(f)
-    
-    # reading products dataframe
-    df_cat = df_sell.select(col("id"), col("name"))\
-        .withColumn("category", lit(None))\
-        .withColumn("type", lit(None))
-    
-    expr_cat, expr_type = None, None
+    df_map = df_json.withColumn("keyword", explode(col("keywords"))).drop("keywords")
 
-    # matching category and type
-    for item in product_map:
-        pattern = "|".join(item["keywords"])
-        condition = col("name").rlike(pattern)
+    df_items = df.select(col("id"), col("item_name"))
 
-        # category expression
-        expr_cat = when(condition, lit(item["category"])) if expr_cat is None else expr_cat.when(condition, lit(item["category"]))
-        
-        # type expression
-        expr_type = when(condition, lit(item["type"])) if expr_type is None else expr_type.when(condition, lit(item["type"]))
+    df_joined = df_items.join(df_map, df_items["item_name"].contains(df_map["keyword"]), "left")
 
-    df_cat = df_cat.withColumn("category", expr_cat.otherwise("Other"))\
-        .withColumn("type", expr_type.otherwise("Other"))\
-        .select(col("id"), col("category"), col("type"))
-    
-    return df_cat
+    df_result = df_joined.fillna({"category":"Other", "type":"Other"}).select(col("id"), col("category"), col("type"))
+
+    return df_result
+
