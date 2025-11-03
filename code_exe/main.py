@@ -4,12 +4,11 @@ from pyspark.sql.functions import col
 from biedronka_e_check_code.parse_json_b_check import run_biedronka_execution
 from lidl_e_check_code.parse_csv_lidl_check import run_lidl_execution
 from load_files import download_files_func
+import time, threading
 
-download_files_func()
+# download_files_func()
 
 spark = SparkSession.builder.appName("E-check transformator").getOrCreate()
-
-df_json = spark.read.option("multiline", True).json("/opt/spark/code_exe/category_type.json")
 
 # Reading biedroka e-check files
 df_bied = spark.read.option("multiline", True).json("/opt/spark/source_data/")
@@ -25,7 +24,12 @@ schema = StructType([
         StructField("date", StringType(), True)
     ])
 
+
 df_lidl = spark.read.csv("/opt/spark/source_data/", header=True, schema=schema)
+
+# Reading json file with categories and types to map
+df_json = spark.read.option("multiline", True).json("/opt/spark/code_exe/category_type.json")
+df_json.cache()
 
 # Execute transformations
 df_bied = run_biedronka_execution(df_bied, df_json)
