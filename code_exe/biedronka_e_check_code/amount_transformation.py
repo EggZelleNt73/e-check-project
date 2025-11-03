@@ -1,8 +1,8 @@
-from pyspark.sql.functions import *
+from pyspark.sql.functions import col, when, lit, floor
 
 def amount_to_countable_trans(df_prod):
-    df_amount = df_prod.withColumn("amount_ps", when(col("quantity") < 1.0 , 1)\
-        .otherwise(floor(col("quantity"))))\
+    df_amount = df_prod.withColumn("amount_ps", when(col("quantity") == floor(col("quantity")) , col("quantity"))\
+        .otherwise(lit(1)))\
         .select(
             col("id"),\
             col("amount_ps")
