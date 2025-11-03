@@ -5,6 +5,10 @@ def date_time_extration_func(df_timestamp, timestamp_col="date"):
     df_date_time = df_ts.withColumn("date", date_format(col("ts"), "MM/dd/yyyy"))\
         .withColumn("time", date_format(col("ts"), "HH:mm"))\
         .withColumn("filename_id", input_file_name())\
-        .select(col("filename_id"), col("date"), col("time"))
+        .select(
+            col("filename_id"),\
+            col("date"),\
+            col("time")
+            )
     
     return df_date_time

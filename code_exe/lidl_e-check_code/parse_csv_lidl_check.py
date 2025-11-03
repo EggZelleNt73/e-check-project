@@ -4,7 +4,7 @@ from googleapiclient.http import MediaIoBaseDownload
 import io, os, glob
 from pyspark.sql import SparkSession
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, DoubleType
-from pyspark.sql.functions import monotonically_increasing_id, floor, lit, col, when
+from pyspark.sql.functions import monotonically_increasing_id, floor, lit, col, when, abs
 from category_identification import category_identification_func
 from date_transformation import date_transformation_func
 
@@ -78,14 +78,15 @@ else:
 
     df = df.join(df_cat, on="id", how="inner")\
         .join(df_date,  on="id", how="inner")\
+        .withColumn("Cost", (col("price") - abs(col("discount_value"))))\
         .withColumn("Amount ps", floor(col("quantity")).cast("int"))\
         .withColumn("Amount kg", when(col("quantity") == floor(col("quantity")), lit(0)).otherwise(col("quantity")))\
         .withColumn("Currency", lit("PLN"))\
         .withColumn("Ex rate", lit(1))\
-        .withColumn("Amount in PLN", (col("price") * col("Ex rate")))\
+        .withColumn("Amount in PLN", col("Cost"))\
         .withColumn("Place", lit("Lidl"))\
         .select(
-            col("price").alias("Cost"),
+            col("Cost"),
             col("Amount ps"),
             col("Amount kg"),
             col("discount"),
@@ -102,6 +103,6 @@ else:
     df = df.orderBy(col("date").asc())
     df = df.fillna(0)
 
-    df.coalesce(1).write.mode("overwrite").option("header", True).csv("/opt/spark/sink_data/csv_file")
+    
 
     spark.stop()
