@@ -6,6 +6,7 @@ from lidl_e_check_code.parse_csv_lidl_check import run_lidl_execution
 from load_files import download_files_func
 import time, threading, os, sys
 from utils.logger_setup import get_logger
+from gs_load import load_to_google_sheet
 
 SOURCE_DIR = "/opt/spark/source_data"
 SINK_DIR = "/opt/spark/sink_data/csv_file"
@@ -117,4 +118,8 @@ except Exception as e:
     logger.error(f"Failed to save dataframe: {e}")
 
 logger.info("Stopping spark session")
+
 spark.stop()
+
+load_to_google_sheet()
+

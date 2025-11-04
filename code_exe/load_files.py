@@ -8,7 +8,7 @@ logger = get_logger(__name__)
 
 def download_files_func():
     # Configuration
-    SERVICE_ACCOUNT_FILE = glob.glob("/opt/spark/google_auth/e-checks-project*.json")[0]
+    SERVICE_ACCOUNT_FILE = ("/opt/spark/google_auth/authentication.json")
     FOLDER_ID = "1uW77S7QK2xsk-M6urShuGy2HqTpnKykd"
     LOCAL_DIR = "/opt/spark/source_data"
 
