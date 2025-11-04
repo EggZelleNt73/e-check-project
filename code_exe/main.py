@@ -20,10 +20,10 @@ download_files_func()
 files = [f for f in os.listdir(SOURCE_DIR) if not f.startswith(".")]
 
 if not files:
-    print("No files found in source directory. Exiting..")
+    logger.info("No files in sourse directory. Exiting...")
     sys.exit(0)
 
-print("Start spark execution")
+logger.info("Starting Spark session")
     
 # Creating spark session
 spark = SparkSession.builder.appName("E-check transformator").getOrCreate()
@@ -32,14 +32,15 @@ spark = SparkSession.builder.appName("E-check transformator").getOrCreate()
 def save_read_json(path: str):
     """Try to read JSON file safely — return None on failure."""
     try:
+        logger.info("Reading json files...")
         df_bied = spark.read.option("multiline", True).json(path)
         if df_bied.isEmpty() or not df_bied.columns or "_corrupt_record" in df_bied.columns:
-            print("JSON source is empty")
+            logger.warning("Not able to load json files into dataframe")
             return None
-        print("JSON file loaded")
+        logger.info("JSON files read successfully")
         return df_bied
     except Exception as e:
-        print("Failed to read JSON files")
+        logger.error(f"Failed to read json files: {e}")
         return None
 
 
@@ -57,20 +58,22 @@ def save_read_csv(path: str):
         ])
 
     try:
+        logger.info("Reading csv files...")
         df_lidl = spark.read.csv(path, header=True, schema=schema)
         if df_lidl.isEmpty() or not df_lidl.columns or "_corrupt_record" in df_lidl.columns:
-            print("JSON source is empty")
+            logger.warning("Not able to load csv files into dataframe")
             return None
         return df_lidl
     except Exception as e:
-        print("Failed to read CSV files")
+        logger.error(f"Failed to read json files: {e}")
         return None
 
+# Reading files and creating data frames
 df_bied = save_read_json(SOURCE_DIR)
 df_lidl = save_read_csv(SOURCE_DIR)
 
 if df_bied is None and df_lidl is None:
-    print("No data available. Exiting...")
+    logger.info("No data available. Exiting...")
     spark.stop()
     sys.exit(0)
 
@@ -80,26 +83,38 @@ df_json.cache()
 
 # Execute biedronka transformation
 if df_bied is None:
-    print("Skipping Biedronka transformation - invalid or missing data")
+    logger.info("Skipping Biedronka transformation - invalid or missing data")
 else:
     df_bied = run_biedronka_execution(df_bied, df_json)
 
 # Execute lidl transformation
 if df_lidl is None:
-    print("Skipping Lidl transformation - invalid or missing data")
+    logger.info("Skipping Lidl transformation - invalid or missing data")
 else:
     df_lidl = run_lidl_execution(df_lidl, df_json)
 
+logger.info("Creating final data frame")
 # Final adjustments
-if df_bied and df_lidl:
-    df_final = df_bied.union(df_lidl)
-elif df_bied:
-    df_final = df_bied
-else:
-    df_final = df_lidl
+try:
+    if df_bied and df_lidl:
+        df_final = df_bied.union(df_lidl)
+    elif df_bied:
+        df_final = df_bied
+    else:
+        df_final = df_lidl
+    logger.info("Final data frame created")
+except Exception as e:
+    logger.error(f"Failed to create final data frame: {e}")
 
 df_final = df_final.orderBy(col("date").asc())
 
-df_final.coalesce(1).write.mode("overwrite").option("header", True).csv(SINK_DIR)
+logger.info("Saving data frame into sink directory")
+# Saving data frame as csv file
+try:
+    df_final.coalesce(1).write.mode("overwrite").option("header", True).csv(SINK_DIR)
+    logger.info("Successfully saved data frame")
+except Exception as e:
+    logger.error(f"Failed to save dataframe: {e}")
 
+logger.info("Stopping spark session")
 spark.stop()
