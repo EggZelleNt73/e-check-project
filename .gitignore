@@ -2,3 +2,4 @@ source_data/
 sink_data/
 google_auth/
 code_exe/test_ses.py
+logs/

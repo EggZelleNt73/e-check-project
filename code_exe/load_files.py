@@ -2,6 +2,9 @@ from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload
 import io, os, glob
+from utils.logger_setup import get_logger
+
+logger = get_logger(__name__)
 
 def download_files_func():
     # Configuration
@@ -23,26 +26,23 @@ def download_files_func():
     files = results.get("files", [])
 
     if not files:
-        print("No new files found on drive")
+        logger.warning("No new files found in google drive")
     else:
         # Download files
+        logger.info("Loading files from google drive")
         for file in files:
             file_id = file["id"]
             file_name = file["name"]
             local_path = os.path.join(LOCAL_DIR, file_name)
 
-            print(f"Downloading: {file_name} ...")
-
+            logger.info(f"Downloading: {file_name} ...")
             request = drive_service.files().get_media(fileId=file_id)
-            fh = io.FileIO(local_path, "wb")
-
-            downloader = MediaIoBaseDownload(fh, request)
-            done = False
-
-            while not done:
-                status, done = downloader.next_chunk()
-                if status:
-                    print(f"Progress: {int(status.progress() * 100)}%")
+            with io.FileIO(local_path, "wb") as fh:
+                downloader = MediaIoBaseDownload(fh, request)
+                done = False
+                while not done:
+                    done = downloader.next_chunk()
             
-            fh.close()
-            print(f"Downloaded: {file_name}")
+                logger.info(f"Downloaded: {file_name}")
+    
+        logger.info("All files have been downloaded to the server")

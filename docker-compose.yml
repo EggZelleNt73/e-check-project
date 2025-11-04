@@ -20,6 +20,7 @@ services:
       - /home/arthur_admin/e-check-project/sink_data:/opt/spark/sink_data
       - /home/arthur_admin/e-check-project/google_auth:/opt/spark/google_auth
       - /home/arthur_admin/e-check-project/spark-conf/spark-defaults.conf:/opt/spark/conf/spark-defaults.conf
+      - /home/arthur_admin/e-check-project/logs:/opt/spark/logs
     
   spark-worker:
     image: e-check-project-image:latest

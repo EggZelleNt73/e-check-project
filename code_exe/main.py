@@ -5,10 +5,16 @@ from biedronka_e_check_code.parse_json_b_check import run_biedronka_execution
 from lidl_e_check_code.parse_csv_lidl_check import run_lidl_execution
 from load_files import download_files_func
 import time, threading, os, sys
+from utils.logger_setup import get_logger
 
 SOURCE_DIR = "/opt/spark/source_data"
+SINK_DIR = "/opt/spark/sink_data/csv_file"
+
+# Create logger
+logger = get_logger(__name__)
 
 # Downloading files from google drive
+logger.info("Connecting to google drive")
 download_files_func()
 
 files = [f for f in os.listdir(SOURCE_DIR) if not f.startswith(".")]
@@ -94,6 +100,6 @@ else:
 
 df_final = df_final.orderBy(col("date").asc())
 
-df_final.coalesce(1).write.mode("overwrite").option("header", True).csv("/opt/spark/sink_data/csv_file")
+df_final.coalesce(1).write.mode("overwrite").option("header", True).csv(SINK_DIR)
 
 spark.stop()
