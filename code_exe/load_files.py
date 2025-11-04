@@ -22,10 +22,8 @@ def download_files_func():
     results = drive_service.files().list(q=query, fields="files(id, name)").execute()
     files = results.get("files", [])
 
-
-
     if not files:
-        print("No files found")
+        print("No new files found on drive")
     else:
         # Download files
         for file in files:

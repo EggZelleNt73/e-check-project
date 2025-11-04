@@ -4,9 +4,19 @@ from pyspark.sql.functions import col
 from biedronka_e_check_code.parse_json_b_check import run_biedronka_execution
 from lidl_e_check_code.parse_csv_lidl_check import run_lidl_execution
 from load_files import download_files_func
-import time, threading
+import time, threading, os, sys
 
-# download_files_func()
+SOURCE_DIR = "/opt/spark/source_data"
+
+download_files_func()
+
+files = [f for f in os.listdir(SOURCE_DIR) if not f.startswith(".")]
+
+if not files:
+    print("No files found. Exiting..")
+    sys.exit(0)
+
+print("Start spark execution")
 
 spark = SparkSession.builder.appName("E-check transformator").getOrCreate()
 
