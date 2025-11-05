@@ -27,7 +27,7 @@ def download_files_func():
 
     # List all CSV files in the folder
     query = f"'{FOLDER_ID}' in parents and (mimeType='text/csv' or mimeType='application/json') and trashed=false" 
-    results = drive_service.files().list(q=query, fields="files(id, name)").execute()
+    results = drive_service.files().list(q=query, fields="files(id, name, mimeType)").execute()
     files = results.get("files", [])
 
     if not files:
@@ -41,9 +41,9 @@ def download_files_func():
             mime_type = file["mimeType"]
 
             if mime_type == "text/csv" or file_name.lower().endswith(".csv"):
-                local_path = os.path.join(CSV_DIR, fila_name)
+                local_path = os.path.join(CSV_DIR, file_name)
             elif mime_type == "application/json" or file_name.lower().endswith(".json"):
-                local_path = os.path.join(JSON_DIR, fila_name)
+                local_path = os.path.join(JSON_DIR, file_name)
             else:
                 logger.warning(f"Skipping usupported file type: {file_name}")
                 continue

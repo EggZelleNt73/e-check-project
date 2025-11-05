@@ -18,7 +18,7 @@ logger = get_logger(__name__)
 
 # Downloading files from google drive
 logger.info("Connecting to google drive")
-# download_files_func()
+download_files_func()
 
 # Checking for file existence in source directories
 def has_files(directory, extension):
@@ -144,5 +144,5 @@ logger.info("Stopping spark session")
 
 spark.stop()
 
-# load_to_google_sheet()
+load_to_google_sheet()
 
