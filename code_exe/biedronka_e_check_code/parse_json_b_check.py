@@ -73,3 +73,6 @@ def run_biedronka_execution(df_bied, df_json):
 
     return df_final
 
+if __name__ == "__main__":
+    run_biedronka_execution(None, None)
+

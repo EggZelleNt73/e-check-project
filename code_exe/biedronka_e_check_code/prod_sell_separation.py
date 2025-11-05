@@ -35,4 +35,7 @@ def prod_sell_separation_func(df_exploded):
                 )
     
     return df_prod
+
+if __name__ == "__main__":
+    prod_sell_separation_func(None)
     

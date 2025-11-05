@@ -46,3 +46,6 @@ def download_files_func():
                 logger.info(f"Downloaded: {file_name}")
     
         logger.info("All files have been downloaded to the server")
+
+if __name__ == "__main__":
+    download_files_func()

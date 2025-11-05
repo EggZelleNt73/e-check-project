@@ -12,3 +12,6 @@ def date_time_extration_func(df_timestamp, timestamp_col="date"):
             )
     
     return df_date_time
+
+if __name__ == "__main__":
+    date_time_extration_func(None, None)

@@ -1,33 +1,3 @@
-# import pandas as pd
-# import gspread
-# from gspread_dataframe import set_with_dataframe
-# from oauth2client.service_account import ServiceAccountCredentials
-# from glob import glob
-
-# def google_sheet_loader():
-#     cred_dir = ("/opt/spark/google_auth/authentication.json")
-#     csv_file = glob(f"/opt/spark/sink_data/csv_file/*.csv")[0]
-#     pdf = pd.read_csv(csv_file)
-
-#     # Authenticate
-#     scope = [
-#         'https://www.googleapis.com/auth/spreadsheets',
-#         'https://www.googleapis.com/auth/drive'
-#     ]
-
-#     credentials = ServiceAccountCredentials.from_json_keyfile_name(
-#         cred_dir, scope
-#     )
-
-#     gc = gspread.authorize(credentials)
-
-#     # Open the Google Sheet
-#     spreadsheet = gc.open("My_balance")
-#     worksheet = spreadsheet.worksheet("test")
-
-#     # Write the DataFrame to the sheet
-#     worksheet.append_rows(pdf.values.tolist(), value_input_option="USER_ENTERED")
-
 import csv, os
 from utils.logger_setup import get_logger
 from google.oauth2 import service_account
@@ -97,5 +67,5 @@ def load_to_google_sheet():
     else:
         logger.info(f"Finished uploading rows to {SHEET_NAME} sheet")
 
-
-load_to_google_sheet()
+if __name__ == "__main__":
+    load_to_google_sheet()

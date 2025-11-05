@@ -4,7 +4,7 @@ from pyspark.sql.functions import col
 from biedronka_e_check_code.parse_json_b_check import run_biedronka_execution
 from lidl_e_check_code.parse_csv_lidl_check import run_lidl_execution
 from load_files import download_files_func
-import time, threading, os, sys
+import os, sys
 from utils.logger_setup import get_logger
 from gs_load import load_to_google_sheet
 
@@ -16,7 +16,7 @@ logger = get_logger(__name__)
 
 # Downloading files from google drive
 logger.info("Connecting to google drive")
-download_files_func()
+# download_files_func()
 
 files = [f for f in os.listdir(SOURCE_DIR) if not f.startswith(".")]
 
@@ -64,6 +64,7 @@ def save_read_csv(path: str):
         if df_lidl.isEmpty() or not df_lidl.columns or "_corrupt_record" in df_lidl.columns:
             logger.warning("Not able to load csv files into dataframe")
             return None
+        logger.info("CSV files read successfully")
         return df_lidl
     except Exception as e:
         logger.error(f"Failed to read json files: {e}")
@@ -121,5 +122,5 @@ logger.info("Stopping spark session")
 
 spark.stop()
 
-load_to_google_sheet()
+# load_to_google_sheet()
 

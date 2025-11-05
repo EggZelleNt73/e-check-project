@@ -28,3 +28,6 @@ def mass_extraction_func(df_prod):
             )
     
     return df_mass
+
+if __name__ == "__main__":
+    mass_extraction_func(None)

@@ -13,3 +13,5 @@ def category_identification_func(df, df_json):
 
     return df_result
 
+if __name__ == "__main__":
+    category_identification_func(None, None)

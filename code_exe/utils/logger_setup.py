@@ -20,3 +20,6 @@ def get_logger(name: str="SparkJobLogger") -> logging.Logger:
         )
 
     return logging.getLogger(name)
+
+if __name__ == "__main__":
+    get_logger(None)

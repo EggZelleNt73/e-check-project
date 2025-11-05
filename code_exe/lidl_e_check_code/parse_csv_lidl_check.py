@@ -1,4 +1,3 @@
-import io, os, glob
 from pyspark.sql import SparkSession
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, DoubleType
 from pyspark.sql.functions import monotonically_increasing_id, floor, lit, col, when, abs
@@ -43,4 +42,8 @@ def run_lidl_execution(df_lidl, df_json):
     df_final = df_lidl.fillna(0)
 
     return df_final
+
+if __name__ == "__main__":
+    run_lidl_execution(None, None)
+
 

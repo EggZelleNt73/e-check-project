@@ -5,3 +5,6 @@ def date_transformation_func(df):
         .select(col("id"), col("date"))
     
     return df_date
+
+if __name__ == "__main__":
+    date_transformation_func(None)

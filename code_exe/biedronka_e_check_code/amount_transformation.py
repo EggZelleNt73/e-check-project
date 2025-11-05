@@ -9,3 +9,6 @@ def amount_to_countable_trans(df_prod):
             )
 
     return df_amount
+
+if __name__ == "__main__":
+    amount_to_countable_trans(None)
