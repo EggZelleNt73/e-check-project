@@ -10,7 +10,7 @@ def load_to_google_sheet():
     CREDENTIALS_FILE = "/opt/spark/google_auth/authentication.json"
     CSV_DIR = "/opt/spark/sink_data/csv_file"
     SHEET_ID = "1sCVUdbZWuQhwpwDj5WG-I3dJZVRBuZHH21zjKu2XxH0"    
-    SHEET_NAME = "test"
+    SHEET_NAME = "Products"
     BATCH_SIZE = 500
 
     csv_path = [f for f in os.listdir(CSV_DIR) if f.endswith(".csv")]

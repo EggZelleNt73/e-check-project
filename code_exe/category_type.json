@@ -33,5 +33,8 @@
     {"category": "Dairy products", "type": "Chocolate shake", "keywords": ["MullMilch"]},
     {"category": "Vegetables", "type": "Salat", "keywords": ["Sur"]},
     {"category": "Bakery products", "type": "Cookie", "keywords": ["Mieszanka pierników"]},
-    {"category": "Liquids", "type": "Tea", "keywords": ["Zioła liściaste herb"]}
+    {"category": "Liquids", "type": "Tea", "keywords": ["Zioła liściaste herb"]},
+    {"category": "Alcohol", "type": "Beer (Paulaner)", "keywords": ["Piw Paulaner"]},
+    {"category": "Alcohol", "type": "Beer (Budweiser)", "keywords": ["Piwo Budweiser"]},
+    {"category": "Household items", "type": "Dish soap", "keywords": ["FairyP"]}
 ]
