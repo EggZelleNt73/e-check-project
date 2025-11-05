@@ -8,8 +8,10 @@ import os, sys
 from utils.logger_setup import get_logger
 from gs_load import load_to_google_sheet
 
-SOURCE_DIR = "/opt/spark/source_data"
+CSV_SOURCE_DIR = "/opt/spark/source_data/csv_files"
+JSON_SOURCE_DIR = "/opt/spark/source_data/json_files"
 SINK_DIR = "/opt/spark/sink_data/csv_file"
+CATEGORY_FILE_LOC = "/opt/spark/code_exe/category_type.json"
 
 # Create logger
 logger = get_logger(__name__)
@@ -18,10 +20,24 @@ logger = get_logger(__name__)
 logger.info("Connecting to google drive")
 # download_files_func()
 
-files = [f for f in os.listdir(SOURCE_DIR) if not f.startswith(".")]
+# Checking for file existence in source directories
+def has_files(directory, extension):
+    if not os.path.exists(directory):
+        logger.warning(f"Directory does not exis: {os.path.exists(directory)}")
+        return False
+    for fname in os.listdir(directory):
+        if fname.startswith("."):
+            continue
+        if fname.lower().endswith(extension):
+            return True
+    logger.warning(f"Couldn't locate {extension} in {directory}")
+    return False
 
-if not files:
-    logger.info("No files in sourse directory. Exiting...")
+has_csv = has_files(CSV_SOURCE_DIR, (".csv",))
+has_json = has_files(JSON_SOURCE_DIR, (".json",))
+
+if not has_csv and not has_json:
+    logger.info("No files found in source directory. Exiting...")
     sys.exit(0)
 
 logger.info("Starting Spark session")
@@ -70,9 +86,15 @@ def save_read_csv(path: str):
         logger.error(f"Failed to read json files: {e}")
         return None
 
+df_lidl = None
+df_bied = None
+
 # Reading files and creating data frames
-df_bied = save_read_json(SOURCE_DIR)
-df_lidl = save_read_csv(SOURCE_DIR)
+if has_json:
+    df_bied = save_read_json(JSON_SOURCE_DIR)
+
+if has_csv:
+    df_lidl = save_read_csv(CSV_SOURCE_DIR)
 
 if df_bied is None and df_lidl is None:
     logger.info("No data available. Exiting...")
@@ -80,7 +102,7 @@ if df_bied is None and df_lidl is None:
     sys.exit(0)
 
 # Reading json file with categories and types to map
-df_json = spark.read.option("multiline", True).json("/opt/spark/code_exe/category_type.json")
+df_json = spark.read.option("multiline", True).json(CATEGORY_FILE_LOC)
 df_json.cache()
 
 # Execute biedronka transformation

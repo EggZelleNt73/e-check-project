@@ -11,6 +11,11 @@ def download_files_func():
     SERVICE_ACCOUNT_FILE = ("/opt/spark/google_auth/authentication.json")
     FOLDER_ID = "1uW77S7QK2xsk-M6urShuGy2HqTpnKykd"
     LOCAL_DIR = "/opt/spark/source_data"
+    CSV_DIR = os.path.join(LOCAL_DIR, "csv_files")
+    JSON_DIR = os.path.join(LOCAL_DIR, "json_files")
+
+    os.makedirs(CSV_DIR, exist_ok=True)
+    os.makedirs(JSON_DIR, exist_ok=True)
 
     # Authenticate
     creds = service_account.Credentials.from_service_account_file(
@@ -33,7 +38,15 @@ def download_files_func():
         for file in files:
             file_id = file["id"]
             file_name = file["name"]
-            local_path = os.path.join(LOCAL_DIR, file_name)
+            mime_type = file["mimeType"]
+
+            if mime_type == "text/csv" or file_name.lower().endswith(".csv"):
+                local_path = os.path.join(CSV_DIR, fila_name)
+            elif mime_type == "application/json" or file_name.lower().endswith(".json"):
+                local_path = os.path.join(JSON_DIR, fila_name)
+            else:
+                logger.warning(f"Skipping usupported file type: {file_name}")
+                continue
 
             logger.info(f"Downloading: {file_name} ...")
             request = drive_service.files().get_media(fileId=file_id)

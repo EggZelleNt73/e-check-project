@@ -1,4 +1,3 @@
-from pyspark.sql import SparkSession
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, DoubleType
 from pyspark.sql.functions import monotonically_increasing_id, floor, lit, col, when, abs
 from category_identification import category_identification_func
