@@ -4,9 +4,10 @@ from pyspark.sql.functions import col
 from biedronka_e_check_code.parse_json_b_check import run_biedronka_execution
 from lidl_e_check_code.parse_csv_lidl_check import run_lidl_execution
 from load_files import download_files_func
-import os, sys
+import os, sys, glob
 from utils.logger_setup import get_logger
 from gs_load import load_to_google_sheet
+from delete_source_files import delete_source_files_func
 
 CSV_SOURCE_DIR = "/opt/spark/source_data/csv_files"
 JSON_SOURCE_DIR = "/opt/spark/source_data/json_files"
@@ -146,3 +147,7 @@ spark.stop()
 
 load_to_google_sheet()
 
+delete_source_files_func("*.csv", CSV_SOURCE_DIR)
+delete_source_files_func("*.json", JSON_SOURCE_DIR)
+
+logger.info("End of the program")
