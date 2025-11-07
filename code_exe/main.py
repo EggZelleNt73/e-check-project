@@ -131,7 +131,7 @@ try:
 except Exception as e:
     logger.error(f"Failed to create final data frame: {e}")
 
-df_final = df_final.orderBy(col("date").asc())
+df_final = df_final.orderBy(col("date").asc(), col("time").asc())
 
 logger.info("Saving data frame into sink directory")
 # Saving data frame as csv file
