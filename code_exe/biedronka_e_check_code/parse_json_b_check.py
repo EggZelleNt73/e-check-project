@@ -34,15 +34,20 @@ def run_biedronka_execution(df_bied, df_json):
     df_mass = mass_extraction_func(df_prod)
     
     # Joining all data frames
-    df_joined = None
-
-    if not df_disc.rdd.isEmpty():
-        df_joined = df_prod.join(df_disc, df_prod.discount_row_id == df_disc.id, how="left")
+    if df_disc is not None:
+        df_prod = df_prod.join(df_disc, df_prod.discount_row_id == df_disc.id, how="left")
     
-    df_joined = df_joined.join(df_cat, on="id", how="inner")\
+    # Handling discount column
+    if "isDiscount" in df_prod.columns:
+        df_prod = df_prod.withColumn("isDiscount", when(col("isDiscount").isNotNull(), col("isDiscount")).otherwise(lit(None)))
+    else:
+        df_prod = df_prod.withColumn("isDiscount", lit(None))\
+            .withColumn("discount_value", lit(0))
+    
+    df_joined = df_prod.join(df_cat, on="id", how="inner")\
         .join(df_date, on="filename_id", how="inner")\
         .join(df_mass, on="id", how="inner")\
-        .join(df_amount, on="id", how="inner")
+        .join(df_amount, on="id", how="inner")\
     
     # Final adjustments
     df_final = df_joined.withColumn("mass_kg", (col("mass_kg") * col("amount_ps")))\

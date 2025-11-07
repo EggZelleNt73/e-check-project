@@ -34,7 +34,7 @@ def prod_sell_separation_func(df_exploded):
                 col("filename_id")
                 )
     
-    return df_prod
+    return df_prod, None
 
 if __name__ == "__main__":
     prod_sell_separation_func(None)
