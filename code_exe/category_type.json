@@ -38,5 +38,6 @@
     {"category": "Alcohol", "type": "Beer (Budweiser)", "keywords": ["Piwo Budweiser"]},
     {"category": "Household items", "type": "Dish soap", "keywords": ["FairyP"]},
     {"category": "Grains", "type": "Rice", "keywords": ["Ryż"]},
-    {"category": "Frozen food", "type": "Frozen vegetables", "keywords": ["Mieszanka7sk"]}
+    {"category": "Frozen food", "type": "Frozen vegetables", "keywords": ["Mieszanka7sk", "WarzywaNaPat"]},
+    {"category": "Alcohol", "type": "Beer (Blanc)", "keywords": ["Piwo1664Blanc"]}
 ]

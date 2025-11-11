@@ -1,0 +1,20 @@
+#! /bin/bash
+
+SPARK_COMP_DIR="/home/arthur_admin/e-check-project"
+MAIN_SCRIPT_DIR="/opt/spark/code_exe/main.py"
+
+docker-compose -f "$SPARK_COMP_DIR/docker-compose.yml" up -d
+
+docker exec spark-master /opt/spark/bin/spark-submit $MAIN_SCRIPT_DIR
+
+STATUS=$?
+
+if [ "$STATUS" -eq 0 ]; then
+    echo "$(date): Spark job finished successfully"
+else
+    echo "$(date): Spark job failed"
+fi
+
+# stop and remove the container
+docker-compose -f "$SPARK_COMP_DIR/docker-compose.yml" down
+echo "$(date) docker container stopped"
