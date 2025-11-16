@@ -7,7 +7,7 @@
     {"category": "Alcohol", "type": "Beer (LECH)", "keywords": ["PiwoLech"]},
     {"category": "Household items", "type": "Bag", "keywords": ["Torba"]},
     {"category": "Sauces & Jams", "type": "Tomato sauce", "keywords": ["PassataGust"]},
-    {"category": "Liquids", "type": "Coca-cola", "keywords": ["CocaCola"]},
+    {"category": "Liquids", "type": "Coca-cola", "keywords": ["CocaCola", "Coca Cola"]},
     {"category": "Liquids", "type": "Mineral water", "keywords": ["Woda"]},
     {"category": "Grains", "type": "Buckwheat", "keywords": ["KaszaGrycz"]},
     {"category": "Grains", "type": "Pearl barley", "keywords": ["KaszaP"]},
@@ -16,7 +16,7 @@
     {"category": "Vegetables", "type": "Spinach", "keywords": ["Szpina"]},
     {"category": "Bakery products", "type": "Breadcrumbs", "keywords": ["TartaPano"]},
     {"category": "Fruits", "type": "Orange", "keywords": ["Pomara"]},
-    {"category": "Dairy products", "type": "Butter", "keywords": ["Maslo", "Masło"]},
+    {"category": "Dairy products", "type": "Butter", "keywords": ["Maslo", "Masło", "Mas"]},
     {"category": "Vegetables", "type": "Ginger", "keywords": ["Imbir"]},
     {"category": "Spices", "type": "Cinnamon", "keywords": ["PrzypCyn"]},
     {"category": "Vegetables", "type": "Radish", "keywords": ["Rzodkiewka"]},
@@ -38,6 +38,7 @@
     {"category": "Alcohol", "type": "Beer (Budweiser)", "keywords": ["Piwo Budweiser"]},
     {"category": "Household items", "type": "Dish soap", "keywords": ["FairyP"]},
     {"category": "Grains", "type": "Rice", "keywords": ["Ryż"]},
-    {"category": "Frozen food", "type": "Frozen vegetables", "keywords": ["Mieszanka7sk", "WarzywaNaPat"]},
-    {"category": "Alcohol", "type": "Beer (Blanc)", "keywords": ["Piwo1664Blanc"]}
+    {"category": "Frozen food", "type": "Frozen vegetables", "keywords": ["Mieszanka7sk", "WarzywaNaPat", "WarzNaPat"]},
+    {"category": "Alcohol", "type": "Beer (Blanc)", "keywords": ["Piwo1664Blanc"]},
+    {"category": "Dairy products", "type": "Cottage cheese", "keywords": ["Twar"]}
 ]
