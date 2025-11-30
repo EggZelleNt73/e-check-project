@@ -24,7 +24,7 @@
     {"category": "Vegetables", "type": "Dill", "keywords": ["Koper"]},
     {"category": "Meat", "type": "Pork loin", "keywords": ["SchWp"]},
     {"category": "Alcohol", "type": "Wine", "keywords": ["Wino"]},
-    {"category": "Meat", "type": "Minced pork", "keywords": ["Mi mie wp", "mielone wieprz"]},
+    {"category": "Meat", "type": "Minced pork", "keywords": ["Mi mie wp", "mielone wieprz", "Mi miel szy"]},
     {"category": "Bakery products", "type": "Pizza", "keywords": ["Pizza"]},
     {"category": "Snacks", "type": "Cheeps", "keywords": ["Chip"]},
     {"category": "Frozen food", "type": "Pelmeni", "keywords": ["Pielmieni"]},
@@ -40,5 +40,10 @@
     {"category": "Grains", "type": "Rice", "keywords": ["Ryż"]},
     {"category": "Frozen food", "type": "Frozen vegetables", "keywords": ["Mieszanka7sk", "WarzywaNaPat", "WarzNaPat"]},
     {"category": "Alcohol", "type": "Beer (Blanc)", "keywords": ["Piwo1664Blanc"]},
-    {"category": "Dairy products", "type": "Cottage cheese", "keywords": ["Twar"]}
+    {"category": "Dairy products", "type": "Cottage cheese", "keywords": ["Twar", "SerekWiejsLekk"]},
+    {"category": "Household items", "type": "Washing powder", "keywords": ["KapsPersColor"]},
+    {"category": "Fruits", "type": "Bananas", "keywords": ["Banan"]},
+    {"category": "Snacks", "type": "Chocolate cream", "keywords": ["KremChocCzek"]},
+    {"category": "Alcohol", "type": "Beer (Perla)", "keywords": ["PiwoPer\u0142a"]},
+    {"category": "Dairy products", "type": "Milk", "keywords": ["MLEKO"]}
 ]
