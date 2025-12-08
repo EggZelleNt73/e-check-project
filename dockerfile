@@ -3,7 +3,7 @@ FROM apache/spark:latest
 USER root
 
 # Install Python packages
-RUN pip install --no-cache-dir gspread gspread-dataframe oauth2client google-api-python-client google-auth
+RUN pip install --no-cache-dir gspread gspread-dataframe oauth2client google-api-python-client google-auth python-dotenv
 
 # Create Spark user
 RUN useradd -m -u 1000 -s /bin/spark sparkuser

@@ -45,5 +45,7 @@
     {"category": "Fruits", "type": "Bananas", "keywords": ["Banan"]},
     {"category": "Snacks", "type": "Chocolate cream", "keywords": ["KremChocCzek"]},
     {"category": "Alcohol", "type": "Beer (Perla)", "keywords": ["PiwoPer\u0142a"]},
-    {"category": "Dairy products", "type": "Milk", "keywords": ["MLEKO"]}
+    {"category": "Dairy products", "type": "Milk", "keywords": ["MLEKO"]},
+    {"category": "Spices", "type": "Spice for chicken", "keywords": ["Przy D KurKam"]},
+    {"category": "Fruits", "type": "Kiwi", "keywords": ["Kiwi"]}
 ]

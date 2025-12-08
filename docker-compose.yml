@@ -1,7 +1,7 @@
 version: '3'
 services:
   spark-master:
-    image: e-check-project-image:latest
+    image: e-check-project-image:1.0
     container_name: spark-master
     command: ["/opt/spark/bin/spark-class", "org.apache.spark.deploy.master.Master", "--host", "spark-master"]
     environment:
@@ -21,9 +21,10 @@ services:
       - /home/arthur_admin/e-check-project/google_auth:/opt/spark/google_auth
       - /home/arthur_admin/e-check-project/spark-conf/spark-defaults.conf:/opt/spark/conf/spark-defaults.conf
       - /home/arthur_admin/e-check-project/logs:/opt/spark/logs
+      - /home/arthur_admin/e-check-project/.env:/opt/spark/.env
     
   spark-worker:
-    image: e-check-project-image:latest
+    image: e-check-project-image:1.0
     container_name: spark-worker
     command: ["/opt/spark/bin/spark-class", "org.apache.spark.deploy.worker.Worker", "spark://spark-master:7077"]
     environment:
@@ -36,6 +37,7 @@ services:
       - /home/arthur_admin/e-check-project/google_auth:/opt/spark/google_auth
       - /home/arthur_admin/e-check-project/spark-conf/spark-defaults.conf:/opt/spark/conf/spark-defaults.conf
       - /home/arthur_admin/e-check-project/logs:/opt/spark/logs
+      - /home/arthur_admin/e-check-project/.env:/opt/spark/.env
     depends_on:
       - spark-master
       

@@ -2,15 +2,18 @@ import csv, os
 from utils.logger_setup import get_logger
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
+from dotenv import load_dotenv
 
 def load_to_google_sheet():
     """Append CSV rows (without header) to an existing Google Sheet."""
     logger = get_logger(__name__)
 
-    CREDENTIALS_FILE = "/opt/spark/google_auth/authentication.json"
+    load_dotenv("/opt/spark/.env")
+
+    CREDENTIALS_FILE = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
     CSV_DIR = "/opt/spark/sink_data/csv_file"
-    SHEET_ID = "1sCVUdbZWuQhwpwDj5WG-I3dJZVRBuZHH21zjKu2XxH0"    
-    SHEET_NAME = "Products"
+    SHEET_ID = os.getenv("GOOGLE_SHEET_ID")
+    SHEET_NAME = os.getenv("GOOGLE_SHEET_NAME")
     BATCH_SIZE = 500
 
     csv_path = [f for f in os.listdir(CSV_DIR) if f.endswith(".csv")]
