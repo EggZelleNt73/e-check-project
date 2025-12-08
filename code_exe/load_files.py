@@ -3,13 +3,19 @@ from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload
 import io, os, glob
 from utils.logger_setup import get_logger
+from dotenv import load_dotenv
 
 logger = get_logger(__name__)
 
+
+
 def download_files_func():
+
+    load_dotenv("/opt/spark/.env")
+
     # Configuration
-    SERVICE_ACCOUNT_FILE = ("/opt/spark/google_auth/authentication.json")
-    FOLDER_ID = "1uW77S7QK2xsk-M6urShuGy2HqTpnKykd"
+    SERVICE_ACCOUNT_FILE = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+    FOLDER_ID = os.getenv("GOOGLE_DRIVE_DIRECTORY_ID")
     LOCAL_DIR = "/opt/spark/source_data"
     CSV_DIR = os.path.join(LOCAL_DIR, "csv_files")
     JSON_DIR = os.path.join(LOCAL_DIR, "json_files")

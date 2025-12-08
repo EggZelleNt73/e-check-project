@@ -1,9 +1,9 @@
 #! /bin/bash
 
-SPARK_COMP_DIR="/home/arthur_admin/e-check-project"
+SPARK_COMP_DIR="/home/arthur/projects/e-check-project"
 MAIN_SCRIPT_DIR="/opt/spark/code_exe/main.py"
 
-docker-compose -f "$SPARK_COMP_DIR/docker-compose.yml" up -d
+docker compose -f "$SPARK_COMP_DIR/docker-compose.yml" up -d
 
 docker exec spark-master /opt/spark/bin/spark-submit $MAIN_SCRIPT_DIR
 
@@ -16,5 +16,5 @@ else
 fi
 
 # stop and remove the container
-docker-compose -f "$SPARK_COMP_DIR/docker-compose.yml" down
+docker compose -f "$SPARK_COMP_DIR/docker-compose.yml" down
 echo "$(date) docker container stopped"

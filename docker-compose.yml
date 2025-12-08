@@ -15,13 +15,13 @@ services:
       - "7077:7077"
       - "4040:4040"
     volumes:
-      - /home/arthur_admin/e-check-project/source_data:/opt/spark/source_data
-      - /home/arthur_admin/e-check-project/code_exe:/opt/spark/code_exe
-      - /home/arthur_admin/e-check-project/sink_data:/opt/spark/sink_data
-      - /home/arthur_admin/e-check-project/google_auth:/opt/spark/google_auth:ro
-      - /home/arthur_admin/e-check-project/spark-conf/spark-defaults.conf:/opt/spark/conf/spark-defaults.conf
-      - /home/arthur_admin/e-check-project/logs:/opt/spark/logs
-      - /home/arthur_admin/e-check-project/.env:/opt/spark/.env:ro
+      - /home/arthur/projects/e-check-project/source_data:/opt/spark/source_data
+      - /home/arthur/projects/e-check-project/code_exe:/opt/spark/code_exe
+      - /home/arthur/projects/e-check-project/sink_data:/opt/spark/sink_data
+      - /home/arthur/projects/e-check-project/google_auth:/opt/spark/google_auth:ro
+      - /home/arthur/projects/e-check-project/spark-conf/spark-defaults.conf:/opt/spark/conf/spark-defaults.conf
+      - /home/arthur/projects/e-check-project/logs:/opt/spark/logs
+      - /home/arthur/projects/e-check-project/.env:/opt/spark/.env:ro
     
   spark-worker:
     image: e-check-project-image:1.0
@@ -31,13 +31,13 @@ services:
       - SPARK_MODE=worker
       - SPARK_MASTER_URL=spark://spark-master:7077
     volumes:
-      - /home/arthur_admin/e-check-project/source_data:/opt/spark/source_data
-      - /home/arthur_admin/e-check-project/code_exe:/opt/spark/code_exe
-      - /home/arthur_admin/e-check-project/sink_data:/opt/spark/sink_data
-      - /home/arthur_admin/e-check-project/google_auth:/opt/spark/google_auth:ro
-      - /home/arthur_admin/e-check-project/spark-conf/spark-defaults.conf:/opt/spark/conf/spark-defaults.conf
-      - /home/arthur_admin/e-check-project/logs:/opt/spark/logs
-      - /home/arthur_admin/e-check-project/.env:/opt/spark/.env:ro
+      - /home/arthur/projects/e-check-project/source_data:/opt/spark/source_data
+      - /home/arthur/projects/e-check-project/code_exe:/opt/spark/code_exe
+      - /home/arthur/projects/e-check-project/sink_data:/opt/spark/sink_data
+      - /home/arthur/projects/e-check-project/google_auth:/opt/spark/google_auth:ro
+      - /home/arthur/projects/e-check-project/spark-conf/spark-defaults.conf:/opt/spark/conf/spark-defaults.conf
+      - /home/arthur/projects/e-check-project/logs:/opt/spark/logs
+      - /home/arthur/projects/e-check-project/.env:/opt/spark/.env:ro
     depends_on:
       - spark-master
       
