@@ -244,6 +244,8 @@ Place	                            Store name / location
 
 
 ## How to Run (Manually)
+- Upload e-check to your Google Drive directory
+- run
 <pre>
 bash script.exe  
 </pre>
