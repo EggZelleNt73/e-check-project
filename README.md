@@ -127,7 +127,7 @@ Later will be added downloadable JSON n8n workflow
 
 6. Build and run
 <pre>
-docker compose build -t your_image_name:version .
+docker build -t your_image_name:version .
 bash script.exe
 </pre>
 
