@@ -28,7 +28,7 @@ A data-processing pipeline that parses e-check receipts from grocery stores (for
 ## Installation & Setup
 
 1. Clone the repository
-<pre> git clone e-check-project </pre>
+<pre> git clone https://github.com/EggZelleNt73/e-check-project.git </pre>
 
 2. Create required directories
 
@@ -64,7 +64,7 @@ Place your Google Service Account JSON into:
 Update all volume mounts to point to your local project path in docker-compose.yml file. 
 Example:
 <pre>
-- /home/your_name/project_directory/source_data:/opt/spark/source_data        # change only /home/your_name/project_directory/ part
+- /home/your_name/project_directory/e-check-project/source_data:/opt/spark/source_data        # change only /home/your_name/project_directory/ part
 </pre>
 
 
