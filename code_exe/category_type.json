@@ -24,14 +24,14 @@
     {"category": "Vegetables", "type": "Dill", "keywords": ["Koper"]},
     {"category": "Meat", "type": "Pork loin", "keywords": ["SchWp"]},
     {"category": "Alcohol", "type": "Wine", "keywords": ["Wino"]},
-    {"category": "Meat", "type": "Minced pork", "keywords": ["Mi mie wp", "mielone wieprz", "Mi miel szy"]},
+    {"category": "Meat", "type": "Minced pork", "keywords": ["Mi mie wp", "mielone wieprz", "Mi miel szy", "Mielone Z \u0141op"]},
     {"category": "Bakery products", "type": "Pizza", "keywords": ["Pizza"]},
     {"category": "Snacks", "type": "Cheeps", "keywords": ["Chip"]},
     {"category": "Frozen food", "type": "Pelmeni", "keywords": ["Pielmieni"]},
     {"category": "Dairy products", "type": "Cheese cabebert", "keywords": ["Ser Camembert"]},
     {"category": "Liquids", "type": "Sunflower oil", "keywords": ["OlejS"]},
     {"category": "Dairy products", "type": "Chocolate shake", "keywords": ["MullMilch"]},
-    {"category": "Vegetables", "type": "Salat", "keywords": ["Sur"]},
+    {"category": "Vegetables", "type": "Salat", "keywords": ["Sur", "Bukiet\u017bydoKukKop"]},
     {"category": "Bakery products", "type": "Cookie", "keywords": ["Mieszanka pierników"]},
     {"category": "Liquids", "type": "Tea", "keywords": ["Zioła liściaste herb"]},
     {"category": "Alcohol", "type": "Beer (Paulaner)", "keywords": ["Piw Paulaner"]},
@@ -47,5 +47,7 @@
     {"category": "Alcohol", "type": "Beer (Perla)", "keywords": ["PiwoPer\u0142a"]},
     {"category": "Dairy products", "type": "Milk", "keywords": ["MLEKO"]},
     {"category": "Spices", "type": "Spice for chicken", "keywords": ["Przy D KurKam"]},
-    {"category": "Fruits", "type": "Kiwi", "keywords": ["Kiwi"]}
+    {"category": "Fruits", "type": "Kiwi", "keywords": ["Kiwi"]},
+    {"category": "Bakery products", "type": "Poppy seed bun", "keywords": ["Dro\u017cd\u017cZMakiem"]},
+    {"category": "Vegetables", "type": "Onion white", "keywords": ["Cebula"]}
 ]
