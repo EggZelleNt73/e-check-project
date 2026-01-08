@@ -24,7 +24,7 @@
     {"category": "Vegetables", "type": "Dill", "keywords": ["Koper"]},
     {"category": "Meat", "type": "Pork loin", "keywords": ["SchWp"]},
     {"category": "Alcohol", "type": "Wine", "keywords": ["Wino"]},
-    {"category": "Meat", "type": "Minced pork", "keywords": ["Mi mie wp", "mielone wieprz", "Mi miel szy", "Mielone Z \u0141op"]},
+    {"category": "Meat", "type": "Minced pork", "keywords": ["Mi mie wp", "mielone wieprz", "Mi miel szy", "Mielone Z \u0141op", "Mi\u0119soMielWiepWo"]},
     {"category": "Bakery products", "type": "Pizza", "keywords": ["Pizza"]},
     {"category": "Snacks", "type": "Cheeps", "keywords": ["Chip"]},
     {"category": "Frozen food", "type": "Pelmeni", "keywords": ["Pielmieni"]},
@@ -49,5 +49,6 @@
     {"category": "Spices", "type": "Spice for chicken", "keywords": ["Przy D KurKam"]},
     {"category": "Fruits", "type": "Kiwi", "keywords": ["Kiwi"]},
     {"category": "Bakery products", "type": "Poppy seed bun", "keywords": ["Dro\u017cd\u017cZMakiem"]},
-    {"category": "Vegetables", "type": "Onion white", "keywords": ["Cebula"]}
+    {"category": "Vegetables", "type": "Onion white", "keywords": ["Cebula"]},
+    {"category": "Seafood", "type": "Herring", "keywords": ["KrajankaPoKaszu"]}
 ]
