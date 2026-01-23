@@ -50,5 +50,7 @@
     {"category": "Fruits", "type": "Kiwi", "keywords": ["Kiwi"]},
     {"category": "Bakery products", "type": "Poppy seed bun", "keywords": ["Dro\u017cd\u017cZMakiem"]},
     {"category": "Vegetables", "type": "Onion white", "keywords": ["Cebula"]},
-    {"category": "Seafood", "type": "Herring", "keywords": ["KrajankaPoKaszu"]}
+    {"category": "Seafood", "type": "Herring", "keywords": ["KrajankaPoKaszu"]},
+    {"category": "Dairy products", "type": "Cheese edamski", "keywords": ["Ser Edamski"]},
+    {"category": "Meat", "type": "Salami", "keywords": ["Salami"]}
 ]
