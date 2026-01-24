@@ -52,5 +52,6 @@
     {"category": "Vegetables", "type": "Onion white", "keywords": ["Cebula"]},
     {"category": "Seafood", "type": "Herring", "keywords": ["KrajankaPoKaszu"]},
     {"category": "Dairy products", "type": "Cheese edamski", "keywords": ["Ser Edamski"]},
-    {"category": "Meat", "type": "Salami", "keywords": ["Salami"]}
+    {"category": "Meat", "type": "Salami", "keywords": ["Salami"]},
+    {"category": "Vegetables", "type": "Pickles", "keywords": ["Kornisz"]}
 ]
